@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+//import logo from './logo.svg';
+//import './App.css';
+import React, { useState } from 'react';
+import Board from './Conponent/Board'
+import PlayerDetails from './Conponent/PlayerDetails';
+import Result from './Conponent/Result';
 
 function App() {
+  const [details, setDetails] = useState(true);
+  const [names, setNames] = useState(Array(2).fill(null))
+
+  const playerName = (name) => {
+    const namesOfPlayers = name.slice();
+    setNames(namesOfPlayers);
+    setDetails(false);
+  }
+  const restartGame = () => {
+    setDetails(true);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className='header'>Tic Toc Toe</h1>
+      {details && <PlayerDetails onSaveName={playerName} />}
+      {!details && <Board inputNames={names} gameOver={restartGame} />}
     </div>
   );
 }
