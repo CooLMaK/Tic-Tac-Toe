@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className='header'>Tic Toc Toe</h1>
+      <h1 className='header'>Tic Tac Toe</h1>
       {details && <PlayerDetails onSaveName={playerName} />}
       {!details && <Board inputNames={names} gameOver={restartGame} />}
     </div>
